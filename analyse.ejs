@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Img/logo.svg" type="image/x-icon">
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+<body id="page-top">
+    <!-- Page Wrapper -->
+     <div id="wrapper">
+        <!-- Sidebar -->
+        <%- include('../Components/sidebar.comp.ejs') %>
+        <!-- End of Sidebar -->
+         <!-- Content Wrapper -->
+         <div id="content-wrapper" class="d-flex flex-column">
+             <!-- Main Content -->
+             <div id="content">
+                <!-- Topbar -->
+                <%- include('../Components/navbar.comp.ejs') %>
+                <!-- End of Topbar -->
+                 <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">FeedBack de la quizaine</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Rapport</a>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Performances des Unitées de Production</h6>
+                            <form class="row" action="/Search" method="post">
+                                <input type="date" name="date" id="date" class="col form-control">
+                                <input style="margin-left: 10px; padding: 5px 20px;" type="submit" value="Trier" class="btn btn-success">
+                            </form>
+                            <a href="/Productions" class="btn btn-primary">Ajouter</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Unités</th>
+                                            <th>Responsables</th>
+                                            <th>Objectif</th>
+                                            <th>Resultat</th>
+                                            <th>Evènements</th>
+                                            <th>Observations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.forEach(production => { %>
+                                        <tr>
+                                            <% unites.forEach(unite => { %>
+                                                <% if (unite.id == production.idUnite) {%>
+                                                    <td>
+                                                        <%= unite.name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= unite.responsable %>
+                                                    </td>
+                                                <% };  %>
+                                            <% }); %>
+                                             <td class="text-center"><%= production.objectif %></td>
+                                             <td class="text-center"><%= production.resultat %></td>
+                                             <% if (production.event == "rupture" || production.event == "moo") {%>
+                                                <td class="text-center text-danger"><%= production.event %></td>
+                                             <% };  %>
+                                             <% if (production.event == "ras" || production.event == "autre") {%>
+                                                <td class="text-center text-info"><%= production.event %></td>
+                                             <% };  %>
+                                             <% if (production.event == "panne") {%>
+                                                <td class="text-center text-warning"><%= production.event %></td>
+                                             <% };  %>
+                                             <td class="text-center">
+                                                <% if (production.objectif > production.resultat) { %>
+                                                    <img src="/Img/angry.png" alt="" width="30px">
+                                                <% } else { %>
+                                                    <img src="/Img/happy.png" alt="" width="30px">
+                                                <% } %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- /.container-fluid -->
+             </div>
+         </div>
+     </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+</html>

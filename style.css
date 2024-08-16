@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "Open-Sans";
+    src: url('./OpenSans-Regular.ttf');
+}
+:root{
+    --clr1: #435EEF;
+    --clr2: #556EF0;
+    --clr3: #697EF2;
+    --clr4: #7B8EF3;
+    --gris: #BDC3C7;
+    --dark: #2C3E50;
+    --blanc: #FFFFFF;
+    --bg: #ECF0F1;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open-Sans';
+}
+
+body{
+    font-family: 'Open-Sans';
+}
+
+.logo{
+    border-radius: 50%;
+}
+
+.link{
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.link:hover{
+    background-color: var(--clr2);
+    color: var(--blanc);
+    border-radius: 6px;
+}
+
+.icone{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+.text-link{
+    margin-left: 30px;
+}

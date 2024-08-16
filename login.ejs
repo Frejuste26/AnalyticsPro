@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Img/logo.svg" type="image/x-icon">
+    <title> <%- title %> </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-brand">
+            <img src="/Img/logo.svg" alt="" class="form-logo">
+            <span class="form-title">Connexion</span>
+        </div>
+        <form action="/Login" method="post" class="form-content">
+            <div class="msg-box">
+                <% if (locals.flash && locals.flash.error) { %>
+                    <span class="error-warning">
+                        <%= flash.error %>
+                    </span>
+                <% } %>
+                <% if (locals.flash && locals.flash.success) { %>
+                    <span class="warning-alert">
+                        <%= flash.warnnig %>
+                    </span>
+                <% } %>
+            </div>
+            <div class="form-row">
+                <label for="usename" class="form-label">Pseudo</label>
+                <input type="text" name="username" id="username" class="form-input">
+            </div>
+            <div class="form-row">
+                <label for="password" class="form-label">Mot de Passe</label>
+                <input type="password" name="password" id="password" class="form-input">
+            </div>
+            <button id="btn-submit" type="submit" class="form-sumit">Se Connecter</button>
+        </form>
+    </div>
+</body>
+</html>
